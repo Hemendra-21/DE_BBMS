@@ -49,3 +49,61 @@ Internal Error
 [0m22:39:31.027586 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x765de86ef970>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x765de74af6d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x765de7449090>]}
 [0m22:39:31.027971 [debug] [MainThread]: Flushing usage events
 [0m22:39:32.377310 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m14:34:48.470948 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7c83a7dfbd30>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7c83a69d7a60>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7c83a69d7a00>]}
+
+
+============================== 14:34:48.473261 | d18e3f79-4135-42df-99f0-3d2478d071b1 ==============================
+[0m14:34:48.473261 [info ] [MainThread]: Running with dbt=1.11.4
+[0m14:34:48.473899 [debug] [MainThread]: running dbt with arguments {'log_format': 'default', 'log_path': 'logs', 'write_json': 'True', 'introspect': 'True', 'static_parser': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'cache_selected_only': 'False', 'use_experimental_parser': 'False', 'empty': 'None', 'indirect_selection': 'eager', 'debug': 'False', 'profiles_dir': '/home/hemendra/.dbt', 'no_print': 'None', 'version_check': 'True', 'invocation_command': 'dbt debug', 'partial_parse': 'True', 'log_cache_events': 'False', 'fail_fast': 'False', 'send_anonymous_usage_stats': 'True', 'warn_error': 'None', 'use_colors': 'True', 'printer_width': '80', 'quiet': 'False', 'target_path': 'None'}
+[0m14:34:48.481093 [info ] [MainThread]: dbt version: 1.11.4
+[0m14:34:48.481642 [info ] [MainThread]: python version: 3.10.12
+[0m14:34:48.482010 [info ] [MainThread]: python path: /home/hemendra/Desktop/DE_Project/venv/bin/python3
+[0m14:34:48.482415 [info ] [MainThread]: os info: Linux-6.8.0-94-generic-x86_64-with-glibc2.35
+[0m14:34:48.522643 [info ] [MainThread]: Using profiles dir at /home/hemendra/.dbt
+[0m14:34:48.523175 [info ] [MainThread]: Using profiles.yml file at /home/hemendra/.dbt/profiles.yml
+[0m14:34:48.523686 [info ] [MainThread]: Using dbt_project.yml file at /home/hemendra/Desktop/DE_Project/master/dbt_project.yml
+[0m14:34:48.524278 [info ] [MainThread]: adapter type: postgres
+[0m14:34:48.524700 [info ] [MainThread]: adapter version: 1.10.0
+[0m14:34:48.525106 [info ] [MainThread]: Configuration:
+[0m14:34:48.525514 [info ] [MainThread]:   profiles.yml file [[32mOK found and valid[0m]
+[0m14:34:48.525891 [info ] [MainThread]:   dbt_project.yml file [[31mERROR not found[0m]
+[0m14:34:48.526231 [info ] [MainThread]: Required dependencies:
+[0m14:34:48.526725 [debug] [MainThread]: Executing "git --help"
+[0m14:34:48.528262 [debug] [MainThread]: STDOUT: "b"usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--no-lazy-fetch]\n           [--no-optional-locks] [--no-advice] [--bare] [--git-dir=<path>]\n           [--work-tree=<path>] [--namespace=<name>] [--config-env=<name>=<envvar>]\n           <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone      Clone a repository into a new directory\n   init       Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add        Add file contents to the index\n   mv         Move or rename a file, a directory, or a symlink\n   restore    Restore working tree files\n   rm         Remove files from the working tree and from the index\n\nexamine the history and state (see also: git help revisions)\n   bisect     Use binary search to find the commit that introduced a bug\n   diff       Show changes between commits, commit and working tree, etc\n   grep       Print lines matching a pattern\n   log        Show commit logs\n   show       Show various types of objects\n   status     Show the working tree status\n\ngrow, mark and tweak your common history\n   backfill   Download missing objects in a partial clone\n   branch     List, create, or delete branches\n   commit     Record changes to the repository\n   merge      Join two or more development histories together\n   rebase     Reapply commits on top of another base tip\n   reset      Set `HEAD` or the index to a known state\n   switch     Switch branches\n   tag        Create, list, delete or verify tags\n\ncollaborate (see also: git help workflows)\n   fetch      Download objects and refs from another repository\n   pull       Fetch from and integrate with another repository or a local branch\n   push       Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m14:34:48.528713 [debug] [MainThread]: STDERR: "b''"
+[0m14:34:48.529089 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m14:34:48.529497 [info ] [MainThread]: Connection:
+[0m14:34:48.529948 [info ] [MainThread]:   host: localhost
+[0m14:34:48.530348 [info ] [MainThread]:   port: 5432
+[0m14:34:48.530753 [info ] [MainThread]:   user: hemendra
+[0m14:34:48.531078 [info ] [MainThread]:   database: BBMS
+[0m14:34:48.531474 [info ] [MainThread]:   schema: analytics
+[0m14:34:48.531928 [info ] [MainThread]:   connect_timeout: 10
+[0m14:34:48.532279 [info ] [MainThread]:   role: None
+[0m14:34:48.532628 [info ] [MainThread]:   search_path: None
+[0m14:34:48.532950 [info ] [MainThread]:   keepalives_idle: 0
+[0m14:34:48.533325 [info ] [MainThread]:   sslmode: None
+[0m14:34:48.533722 [info ] [MainThread]:   sslcert: None
+[0m14:34:48.534081 [info ] [MainThread]:   sslkey: None
+[0m14:34:48.534525 [info ] [MainThread]:   sslrootcert: None
+[0m14:34:48.535012 [info ] [MainThread]:   application_name: dbt
+[0m14:34:48.535526 [info ] [MainThread]:   retries: 1
+[0m14:34:48.536049 [info ] [MainThread]: Registered adapter: postgres=1.10.0
+[0m14:34:48.596577 [debug] [MainThread]: Acquiring new postgres connection 'debug'
+[0m14:34:48.613739 [debug] [MainThread]: Using postgres connection "debug"
+[0m14:34:48.614173 [debug] [MainThread]: On debug: select 1 as id
+[0m14:34:48.614526 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m14:34:48.625566 [debug] [MainThread]: SQL status: SELECT 1 in 0.011 seconds
+[0m14:34:48.626471 [debug] [MainThread]: On debug: Close
+[0m14:34:48.626905 [info ] [MainThread]:   Connection test: [[32mOK connection ok[0m]
+
+[0m14:34:48.627284 [info ] [MainThread]: [31m1 check failed:[0m
+[0m14:34:48.627667 [info ] [MainThread]: Project loading failed for the following reason:
+ project path </home/hemendra/Desktop/DE_Project/master/dbt_project.yml> not found
+
+[0m14:34:48.628476 [debug] [MainThread]: Resource report: {"command_name": "debug", "command_success": false, "command_wall_clock_time": 0.20716406, "process_in_blocks": "0", "process_kernel_time": 0.083996, "process_mem_max_rss": "111892", "process_out_blocks": "24", "process_user_time": 1.406941}
+[0m14:34:48.628941 [debug] [MainThread]: Command `dbt debug` failed at 14:34:48.628842 after 0.21 seconds
+[0m14:34:48.629330 [debug] [MainThread]: Connection 'debug' was properly closed.
+[0m14:34:48.629677 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7c83a7dfbd30>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7c83a60deda0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7c83a60dcc40>]}
+[0m14:34:48.630089 [debug] [MainThread]: Flushing usage events
