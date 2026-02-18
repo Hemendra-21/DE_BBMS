@@ -11,7 +11,7 @@ sources:
       - name: blood_tests
       - name: blood_inventory
       - name: blood_stock_levels
-      - name: blood_compatibility
+      - name: blood_type_compatibility
       - name: hospitals
       - name: recipients 
       - name: technicians
