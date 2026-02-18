@@ -7,7 +7,7 @@ sources:
     tables:
       - name: donors 
       - name: donations 
-      - name: donation_history
+      - name: donor_history
       - name: blood_tests
       - name: blood_inventory
       - name: blood_stock_levels
