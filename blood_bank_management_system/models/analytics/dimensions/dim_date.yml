@@ -1,0 +1,32 @@
+version: 2
+
+models:
+  - name: dim_date 
+    description: "Dimension table for dates, containing details about each date."
+    columns:
+      - name: date_sk
+        description: "Surrogate key for the date dimension."
+        tests:
+          - unique
+          - not_null
+          
+      - name: full_date
+        description: "Actual date value."
+        tests:
+          - not_null
+
+      - name: day
+        description: "Day component of the date."
+        tests:
+          - not_null
+
+      - name: month
+        description: "Month component of the date."
+        tests:
+          - not_null
+      
+      - name: year
+        description: "Year component of the date."
+        tests:
+        - not_null
+    
