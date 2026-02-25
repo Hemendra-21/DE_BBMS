@@ -1,0 +1,28 @@
+version: 2 
+
+models:
+  - name: dim_recipient
+    description: "Dimension table for recipients, containing details about each recipient."
+    columns:
+      - name: recipient_sk
+        description: "Surrogate key for the recipient dimension."
+        tests:
+          - unique
+          - not_null
+      - name: recipient_id
+        description: "Unique identifier for each recipient."
+        tests:
+          - unique
+          - not_null
+      - name: recipient_name
+        description: "Name of the recipient."
+        tests:
+          - not_null
+      - name: recipient_blood_group
+        description: "Blood group of the recipient."
+        tests:
+          - not_null
+      - name: recipient_location
+        description: "Geographical location of the recipient."
+        tests:
+          - not_null
