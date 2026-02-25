@@ -1,0 +1,148 @@
+table dim_donor{
+  donor_sk int [primary key]
+  donor_id int
+  donor_name varchar 
+  donor_age int 
+  donor_gender varchar 
+  donor_blood_group varchar 
+  is_eligible boolean 
+  donor_location varchar 
+}
+
+
+table fct_donations{
+  donation_id int [pk]
+  donor_sk int 
+  hospital_sk int 
+  recipient_sk int 
+  collection_technician_sk int 
+  processed_by_technican_sk int
+  donation_date_sk int
+
+  quantity int
+  donated_blood_group varchar 
+  donation_status varchar 
+}
+
+
+table dim_date{
+  date_sk int [pk]
+  full_date date 
+  day int 
+  month int 
+  month_name varchar 
+  year int
+}
+
+
+
+
+table dim_hospitals{
+  hospital_sk int 
+  hospital_id int
+  hospital_name varchar 
+  city varchar 
+  country varchar 
+  phone_number varchar 
+  email_address varchar 
+  hospital_type varchar 
+  operating_hours varchar 
+  accreditation_status varchar
+}
+
+
+table dim_recipients{
+  recipient_sk int
+  recipient_id int 
+  recipient_hospital_id int 
+  recipient_name varchar 
+  recipient_location varchar
+}
+
+
+table dim_technicians{
+  technician_sk int 
+  technician_id int 
+  technician_hospital_id int 
+  technician_assigned_to_hospital_id int 
+  technician_name varchar 
+  qualification varchar 
+  phone_number varchar 
+}
+
+
+table fct_blood_requests{
+  blood_request_id int [pk]
+  recipient_sk int
+  hospital_sk int 
+  blood_required_date_sk date 
+  blood_group varchar 
+  urgency varchar
+}
+
+
+table fct_blood_inventory{
+  inventory_id int [pk]
+  donation_id int 
+  blood_group varchar 
+  date_received_sk int 
+  expiration_date_sk int
+  units_available int 
+  volume numeric(5,2)
+  quality varchar 
+  status varchar 
+}
+
+
+
+table fct_blood_tests{
+  test_id int 
+  donor_sk int
+  technician_sk int 
+  test_date_sk int 
+  blood_test_type varchar
+  disease_tested varchar 
+  test_result varchar 
+}
+
+
+
+
+
+
+
+Ref: "fct_donations"."donor_sk" < "dim_donor"."donor_sk"
+
+Ref: "fct_donations"."hospital_sk" < "dim_hospitals"."hospital_sk"
+
+Ref: "fct_donations"."donation_date_sk" < "dim_date"."date_sk"
+
+Ref: "fct_donations"."recipient_sk" < "dim_recipients"."recipient_sk"
+
+Ref: "fct_donations"."collection_technician_sk" < "dim_technicians"."technician_sk"
+
+Ref: "fct_donations"."processed_by_technican_sk" < "dim_technicians"."technician_sk"
+
+Ref: "fct_blood_requests"."recipient_sk" < "dim_recipients"."recipient_sk"
+
+Ref: "fct_blood_requests"."hospital_sk" < "dim_hospitals"."hospital_sk"
+
+Ref: "fct_blood_inventory"."donation_id" < "fct_donations"."donation_id"
+
+Ref: "fct_blood_inventory"."date_received_sk" < "dim_date"."date_sk"
+
+Ref: "fct_blood_inventory"."expiration_date_sk" < "dim_date"."date_sk"
+
+Ref: "fct_blood_tests"."donor_sk" < "dim_donor"."donor_sk"
+
+Ref: "fct_blood_tests"."technician_sk" < "dim_technicians"."technician_sk"
+
+Ref: "fct_blood_tests"."test_date_sk" < "dim_date"."date_sk"
+
+
+
+
+
+
+
+

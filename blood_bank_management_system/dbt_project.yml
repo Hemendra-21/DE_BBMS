@@ -35,9 +35,6 @@ models:
       +schema: staging
       +materialized: view
 
-    intermediate:
-      +schema: intermediate
-
-
-    marts:
-      +schema: marts
+    analytics:
+      +schema: analytics 
+      +materialized: table

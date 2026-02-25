@@ -1,0 +1,14 @@
+version: 2
+
+models:
+  - name: dim_donor
+    description: "A dimension table that contains information about donors."
+    columns:
+      - name: donor_sk
+        tests:
+          - unique
+          - not_null
+      - name: donor_id 
+        tests:
+          - not_null
+    

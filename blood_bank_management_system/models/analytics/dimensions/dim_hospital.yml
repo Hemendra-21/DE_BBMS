@@ -1,0 +1,5 @@
+version: 2 
+
+models:
+  - name: dim_hospital
+    description: "Dimension table for hospitals, containing details about each hospital."
