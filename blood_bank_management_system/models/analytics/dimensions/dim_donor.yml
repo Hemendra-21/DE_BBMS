@@ -5,10 +5,20 @@ models:
     description: "A dimension table that contains information about donors."
     columns:
       - name: donor_sk
+        description: "Surrogate key for the donor dimension."
         tests:
           - unique
           - not_null
       - name: donor_id 
+        description: "Natural key for the donor, typically an ID from the source system."
         tests:
           - not_null
+      - name: donor_name
+        description: "The name of the donor."
+      - name: donor_gender
+        description: "The gender of the donor."
+      - name: donor_blood_group
+        description: "The blood group of the donor."
+        
+        
           
