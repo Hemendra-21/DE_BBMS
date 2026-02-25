@@ -3,3 +3,15 @@ version: 2
 models:
   - name: dim_hospital
     description: "Dimension table for hospitals, containing details about each hospital."
+    columns:
+      - name: hospital_sk 
+        description: "Surrogate key for the hospital dimension"
+        tests:
+          - unique 
+          - not_null
+      - name: hospital_id 
+        description: "Natural key for the hospital, typically the original ID from the source system"
+        tests:
+          - unique 
+          - not_null
+
