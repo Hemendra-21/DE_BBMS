@@ -1,5 +1,4 @@
 with source_donors as (
-
     select *
     from {{ ref('stg_donors') }}
 
@@ -15,4 +14,5 @@ with source_donors as (
     from source_donors
 )
 
-select * from final
+select * 
+from final
