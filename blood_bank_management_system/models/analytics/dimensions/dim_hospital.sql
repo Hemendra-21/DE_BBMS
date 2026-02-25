@@ -1,6 +1,7 @@
 with source_hospitals as (
     select * 
     from {{ ref('stg_hospitals')}}
+    
 ), final as (
     select 
         {{ dbt_utils.generate_surrogate_key(['hospital_id'])}} as hospital_sk,
@@ -14,4 +15,5 @@ with source_hospitals as (
     from source_hospitals
 )
 
-select * from final
+select * 
+from final
