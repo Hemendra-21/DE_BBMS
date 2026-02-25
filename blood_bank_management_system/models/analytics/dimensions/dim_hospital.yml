@@ -14,4 +14,10 @@ models:
         tests:
           - unique 
           - not_null
+      - name: hospital_name
+        description: "Name of the hospital"
+      - name: hospital_type
+        description: "Type of the hospital (e.g., General, Specialty, etc.)"
+      - name: accreditation_status
+        description: "Accreditation status of the hospital"
 
