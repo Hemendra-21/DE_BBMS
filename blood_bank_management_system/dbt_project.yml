@@ -36,5 +36,4 @@ models:
       +materialized: view
 
     analytics:
-      +schema: analytics 
-      +materialized: table
+      +schema: analytics
