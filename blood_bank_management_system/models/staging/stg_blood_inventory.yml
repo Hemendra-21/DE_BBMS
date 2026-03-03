@@ -6,19 +6,19 @@ models:
 
     columns:
       - name: inventory_id
-        description: "Primary key for blood inventory"
+        description: "Unique identifier for each inventory record"
         tests:
           - not_null
           - unique
         
       - name: donation_id
-        description: "Foreign key to the donation record"
+        description: "Record of the donation associated with this inventory entry"
 
       - name: recipient_id
-        description: "Foreign key to the recipient record"
+        description: "Recipient associated with the blood unit, if distributed"
         
       - name: blood_group
-        description: "Standardized blood group"
+        description: "Standardized blood group of the blood unit"
         tests:
           - not_null
           - accepted_values:
@@ -32,7 +32,7 @@ models:
               values: ['Good', 'Contaminated']
 
       - name: status
-        description: "Current lifecycle status"
+        description: "Current status of the blood unit in inventory"
         tests:
           - not_null
           - accepted_values:

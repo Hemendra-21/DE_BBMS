@@ -1,0 +1,42 @@
+version: 2
+
+models:
+  - name: stg_blood_tests
+    description: "Cleaned staging model for blood test records"
+
+    columns:
+
+      - name: test_id
+        description: "Unique identifier for each blood test"
+        tests:
+          - not_null
+          - unique
+
+      - name: donor_id
+        description: "
+        tests:
+          - not_null
+          
+
+      - name: technician_id
+        description: "Foreign key to technician"
+        tests:
+          - relationships:
+              to: ref('stg_technician')
+              field: technician_id
+
+      - name: test_date
+        description: "Date the test was performed"
+        tests:
+          - not_null
+
+      - name: result
+        description: "Test result"
+        tests:
+          - accepted_values:
+              values: ['Positive', 'Negative']
+
+      - name: test_type
+        description: "Type of blood test performed"
+        tests:
+          - not_null
