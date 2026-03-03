@@ -40,12 +40,12 @@ models:
         tests:
           - not_null
       
-      - name: dbt_valid_from
+      - name: valid_from
         description: "The timestamp when the record became valid in the dimension."
         tests:
           - not_null
       
-      - name: dbt_valid_to
+      - name: valid_to
         description: "The timestamp when the record is no longer valid in the dimension."
         
           

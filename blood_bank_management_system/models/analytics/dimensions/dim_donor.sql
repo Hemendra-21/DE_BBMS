@@ -15,8 +15,8 @@ final as (
         donor_blood_group,
         is_eligible,
         donor_location,
-        dbt_valid_from,
-        dbt_valid_to,
+        dbt_valid_from as valid_from,
+        dbt_valid_to as valid_to,
         case 
             when dbt_valid_to is null then true 
             else false 
