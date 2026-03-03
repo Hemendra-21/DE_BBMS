@@ -23,4 +23,5 @@ cleaned as (
 
 )
 
-select * from cleaned
+select * from cleaned 
+where test_date is not null

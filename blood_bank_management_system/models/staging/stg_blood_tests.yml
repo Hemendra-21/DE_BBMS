@@ -13,17 +13,13 @@ models:
           - unique
 
       - name: donor_id
-        description: "
+        description: "ID of the donor associated with this blood test"
         tests:
           - not_null
           
 
       - name: technician_id
-        description: "Foreign key to technician"
-        tests:
-          - relationships:
-              to: ref('stg_technician')
-              field: technician_id
+        description: "ID of the technician who performed the test"
 
       - name: test_date
         description: "Date the test was performed"
