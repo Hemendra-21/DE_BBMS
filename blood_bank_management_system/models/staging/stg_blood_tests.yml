@@ -16,10 +16,11 @@ models:
         description: "ID of the donor associated with this blood test"
         tests:
           - not_null
-          
 
       - name: technician_id
         description: "ID of the technician who performed the test"
+        tests:
+            - not_null
 
       - name: test_date
         description: "Date the test was performed"
