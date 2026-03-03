@@ -1,3 +1,8 @@
+{{
+    config(
+        materialized='table'
+    )
+}}
 with date_series as (
     select 
         generate_series(

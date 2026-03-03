@@ -10,7 +10,9 @@
                 'hospital_city',
                 'phone_number',
                 'hospital_type',
-                'accreditation_status'
+                'operating_hours',
+                'accreditation_status',
+                'emergency_contact'
             ]
         )
     }}
