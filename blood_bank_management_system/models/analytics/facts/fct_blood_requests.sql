@@ -1,7 +1,7 @@
 {{
     config(
         materialized='incremental',
-        unique_key='',
+        unique_key='recipient_sk',
         incremental_strategy='merge'
     )
 }}
