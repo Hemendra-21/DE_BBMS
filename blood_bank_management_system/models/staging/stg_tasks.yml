@@ -1,0 +1,21 @@
+version: 2 
+
+models: 
+  - name: stg_tasks
+    description: "Standardized staging model for tasks related to blood bank management"
+    columns:
+      - name: task_id 
+        description: "Unique identifier for each task"
+        tests:
+          - not_null
+          - unique
+
+      - name: task_description
+        description: "Detailed description of the task"
+        tests:
+          - not_null  
+      
+      - name: ingested_at
+        description: "Timestamp when record was loaded into raw layer"
+        tests:
+          - not_null
