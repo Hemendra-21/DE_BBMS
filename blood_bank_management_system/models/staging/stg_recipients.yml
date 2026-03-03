@@ -1,0 +1,54 @@
+version: 2
+
+models:
+  - name: stg_recipients
+    description: "Standardized staging model for blood recipients"
+
+    columns:
+
+      - name: recipient_id
+        description: "Primary key for recipient"
+        tests:
+          - not_null
+          - unique
+
+      - name: hospital_id
+        description: "Foreign key referencing hospital"
+        tests:
+          - relationships:
+              to: ref('stg_hospitals')
+              field: hospital_id
+
+      - name: recipient_name
+        description: "Full name of recipient"
+        tests:
+          - not_null
+
+      - name: recipient_age
+        description: "Age of recipient"
+        tests:
+          - not_null
+
+      - name: blood_group
+        description: "Blood group required"
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-']
+
+      - name: required_date
+        description: "Date when blood is required"
+        tests:
+          - not_null
+
+      - name: urgency
+        description: "Urgency level for blood requirement"
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['low', 'medium', 'high']
+
+      - name: ingested_at
+        description: "Timestamp when record was loaded into raw layer"
+        tests:
+          - not_null

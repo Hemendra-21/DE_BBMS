@@ -1,16 +1,26 @@
-SELECT
-    recipient_id::int as recipient_id,
-    hospital_id::int as hospital_id,
+with source as (
+    SELECT * FROM {{source('raw', 'recipients')}}
+), 
 
-    initcap(trim(name))::varchar as recipient_name,
-    age::int as recipient_age,
+cleaned as(
+    select
+        recipient_id::int as recipient_id,
+        hospital_id::int as hospital_id,
 
-    upper(trim(blood_group))::varchar as blood_group,
+        initcap(trim(name))::varchar as recipient_name,
+        age::int as recipient_age,
 
-    required_date::date as required_date,
+        upper(trim(blood_group))::varchar as blood_group,
 
-    lower(trim(urgency))::varchar as urgency,
+        required_date::date as required_date,
 
-    initcap(trim(location))::varchar as recipient_location
+        lower(trim(urgency))::varchar as urgency,
 
-FROM {{source('raw', 'recipients')}}
+        initcap(trim(location))::varchar as recipient_location,
+
+        ingested_at::timestamp as ingested_at
+
+    from source
+)
+
+select * from cleaned
