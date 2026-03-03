@@ -17,7 +17,8 @@ cleaned as (
         nullif(trim(disease_tested), '')  as disease_tested,
         result::varchar as result,
         trim(test_type) as test_type,
-        nullif(trim(comments), '') as comments
+        nullif(trim(comments), '') as comments,
+        ingested_at::timestamp as ingested_at
 
     from source
 

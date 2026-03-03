@@ -24,7 +24,7 @@ cleaned as (
         date_received::date as date_received,
         expiration_date::date as expiration_date,
 
-        ingested_at
+        ingested_at::timestamp as ingested_at
 
     from source
 
