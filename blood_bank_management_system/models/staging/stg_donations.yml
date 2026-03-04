@@ -27,7 +27,7 @@ models:
           - accepted_values: 
               values: ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-']
       
-      - name: quantity
+      - name: volume_ml
         description: "Quantity of blood donated in milliliters."
         tests: 
           - not_null 
