@@ -16,7 +16,7 @@ final as (
         dh.hospital_sk,
         dr.recipient_sk,
         ddt.date_sk as donation_date_sk,
-        ds.quantity,
+        ds.volume_ml,
         ds.donation_status
     from donation_source ds
     left join {{ ref('dim_donor') }} dd on ds.donor_id = dd.donor_id and ds.donation_date between dd.valid_from and dd.valid_to
