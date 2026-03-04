@@ -47,7 +47,7 @@ models:
         tests:
           - not_null
 
-      - name: volume
+      - name: volume_ml
         description: Volume of blood in ml.
         tests:
           - not_null

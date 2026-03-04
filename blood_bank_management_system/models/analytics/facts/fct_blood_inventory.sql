@@ -18,7 +18,7 @@ final as (
         ddt_received.date_sk as date_received_sk,
         ddt_expired.date_sk as expiration_date_sk,
         bis.units_available,
-        bis.volume
+        bis.volume as volume_ml
         -- bis.quality,
         -- bis.status
     from blood_inventory_source bis

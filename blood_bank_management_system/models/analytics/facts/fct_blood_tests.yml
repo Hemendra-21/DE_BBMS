@@ -37,4 +37,4 @@ models:
         description: Result of the disease test.
         tests:
           - accepted_values:
-              values: ['positive', 'negative']
+              values: ['Positive', 'Negative']
