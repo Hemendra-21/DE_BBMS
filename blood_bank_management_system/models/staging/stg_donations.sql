@@ -14,7 +14,7 @@ cleaned as (
 
         nullif(date, '0000-00-00')::date as donation_date,
 
-        quantity::int as quantity,
+        quantity::int as volume_ml,
 
         upper(trim(blood_group))::varchar as blood_group,
 
