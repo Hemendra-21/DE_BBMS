@@ -1,0 +1,40 @@
+version: 2
+
+models:
+  - name: fct_blood_tests
+    description: Fact table storing results of blood tests conducted on donors.
+
+    columns:
+
+      - name: blood_test_id
+        description: Unique identifier for each blood test.
+        tests:
+          - unique
+          - not_null
+
+      - name: donor_sk
+        description: Surrogate key referencing dim_donor.
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_donor')
+              field: donor_sk
+
+      - name: blood_test_date_sk
+        description: Date surrogate key referencing dim_date.
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_date')
+              field: date_sk
+
+      - name: disease_tested
+        description: Disease tested during blood screening.
+        tests:
+          - not_null
+
+      - name: test_result
+        description: Result of the disease test.
+        tests:
+          - accepted_values:
+              values: ['positive', 'negative']
