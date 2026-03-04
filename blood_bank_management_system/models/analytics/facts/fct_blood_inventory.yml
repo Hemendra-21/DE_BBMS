@@ -1,0 +1,53 @@
+version: 2
+
+models:
+  - name: fct_blood_inventory
+    description: Fact table representing blood inventory derived from donation records.
+
+    columns:
+
+      - name: inventory_id
+        description: Unique identifier for each inventory record.
+        tests:
+          - unique
+          - not_null
+
+      - name: donation_id
+        description: Links inventory to the donation fact.
+        tests:
+          - not_null
+          - relationships:
+              to: ref('fct_donations')
+              field: donation_id
+
+      - name: donor_sk
+        description: Surrogate key referencing dim_donor through donation fact.
+        tests:
+          - relationships:
+              to: ref('dim_donor')
+              field: donor_sk
+
+      - name: date_received_sk
+        description: Date when blood was received.
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_date')
+              field: date_sk
+
+      - name: expiration_date_sk
+        description: Date when blood expires.
+        tests:
+          - relationships:
+              to: ref('dim_date')
+              field: date_sk
+
+      - name: units_available
+        description: Units of blood available.
+        tests:
+          - not_null
+
+      - name: volume
+        description: Volume of blood in ml.
+        tests:
+          - not_null

@@ -1,0 +1,42 @@
+version: 2
+
+models:
+  - name: fct_blood_requests
+    description: Fact table representing blood requests made by hospitals for recipients.
+
+    columns:
+
+      - name: blood_request_sk
+        description: Surrogate key identifying each blood request.
+        tests:
+          - unique
+          - not_null
+
+      - name: recipient_sk
+        description: Links to dim_recipient.
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_recipient')
+              field: recipient_sk
+
+      - name: hospital_sk
+        description: Links to dim_hospital.
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_hospital')
+              field: hospital_sk
+
+      - name: blood_required_date_sk
+        description: Request date surrogate key.
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_date')
+              field: date_sk
+
+      - name: urgency
+        description: Urgency level of the request.
+        tests:
+          - not_null

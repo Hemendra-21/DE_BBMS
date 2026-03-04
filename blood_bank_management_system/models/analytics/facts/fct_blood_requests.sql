@@ -18,7 +18,7 @@ final as (
         rs.urgency
     from recipient_source rs 
     left join {{ref("dim_recipient")}} dr on rs.recipient_id = dr.recipient_id and rs.required_date between dr.valid_from and dr.valid_to
-    left join {{ref("dim_hospital")}} dh on rs.hospital_id = dh.hospital_id and rs.required_date between dh.valid_from and dr.valid_to
+    left join {{ref("dim_hospital")}} dh on rs.hospital_id = dh.hospital_id and rs.required_date between dh.valid_from and dh.valid_to
     inner join {{ref("dim_date")}} ddt on rs.required_date = ddt.full_date 
 )
 

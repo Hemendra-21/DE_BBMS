@@ -24,3 +24,4 @@ cleaned as(
 )
 
 select * from cleaned
+where hospital_id is not null
