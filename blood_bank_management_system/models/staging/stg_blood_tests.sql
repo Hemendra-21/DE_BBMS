@@ -25,4 +25,4 @@ cleaned as (
 )
 
 select * from cleaned 
-where test_date is not null and disease_tested is not null
+where test_date is not null

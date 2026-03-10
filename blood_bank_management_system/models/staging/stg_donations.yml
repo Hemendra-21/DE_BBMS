@@ -33,11 +33,11 @@ models:
           - not_null 
       
       - name: donation_status 
-        description: "Current status of the donation (e.g., 'pending', 'completed', 'cancelled')."
+        description: "Current status of the donation (e.g., 'collected', 'completed')"
         tests: 
           - not_null 
           - accepted_values: 
-              values: ['pending', 'complete', 'cancelled'] 
+              values: ['collected', 'completed'] 
       
       - name: bag_serial_number 
         description: "Serial number of the blood bag used for the donation."

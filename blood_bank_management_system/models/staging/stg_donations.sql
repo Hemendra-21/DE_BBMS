@@ -33,4 +33,3 @@ cleaned as (
 )
 
 select * from cleaned
-where donation_status in ('complete', 'pending', 'cancelled')
