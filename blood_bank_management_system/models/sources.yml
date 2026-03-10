@@ -2,7 +2,7 @@ version: 2
 
 sources:
   - name: raw 
-    database: BBMS
+    database: bbms
     schema: raw 
     tables:
       - name: donors 
