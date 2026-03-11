@@ -37,7 +37,7 @@ models:
         tests: 
           - not_null 
           - accepted_values: 
-              values: ['collected', 'completed'] 
+              values: ['collected', 'tested', 'completed', 'discarded', 'distributed'] 
       
       - name: bag_serial_number 
         description: "Serial number of the blood bag used for the donation."

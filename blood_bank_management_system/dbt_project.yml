@@ -37,3 +37,7 @@ models:
 
     analytics:
       +schema: analytics
+    
+    reports:
+      +schema: analytics
+      +materialized: view
