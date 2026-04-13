@@ -6,23 +6,56 @@
     )
 }}
 
-with donation_source as (
-    select * from {{ ref('stg_donations') }}
+with max_ingested as (
+
+    {% if is_incremental() %}
+        select coalesce(max(ingested_at), '1900-01-01') as max_ingested_at
+        from {{ this }}
+    {% else %}
+        select '1900-01-01'::timestamp as max_ingested_at
+    {% endif %}
+
 ),
+
+donation_source as (
+
+    select * 
+    from {{ ref('stg_donations') }}
+    where ingested_at >= (select max_ingested_at from max_ingested)
+
+),
+
 final as (
+
     select 
+        -- grain
         ds.donation_id,
-        dd.donor_sk,
-        dh.hospital_sk,
-        dr.recipient_sk,
-        ddt.date_sk as donation_date_sk,
-        ds.volume_ml,
-        ds.donation_status
+
+        ds.donor_id,
+        ds.hospital_id,
+        ds.recipient_id,
+
+        ddt.date_id as donation_date_id,
+
+        ds.quantity as volume_ml,
+
+        ds.status as donation_status,
+
+        ds.ingested_at
+
     from donation_source ds
-    left join {{ ref('dim_donor') }} dd on ds.donor_id = dd.donor_id and ds.donation_date between dd.valid_from and dd.valid_to
-    left join {{ ref('dim_hospital') }} dh on ds.hospital_id = dh.hospital_id and ds.donation_date between dh.valid_from and coalesce(dh.valid_to, '9999-12-31')
-    left join {{ ref('dim_recipient') }} dr on ds.recipient_id = dr.recipient_id and ds.donation_date between dr.valid_from and coalesce(dr.valid_to, '9999-12-31')
-    inner join {{ ref("dim_date") }} ddt on ds.donation_date = ddt.full_date
+
+    left join {{ ref('dim_donor') }} dd 
+        on ds.donor_id = dd.donor_id 
+
+    left join {{ ref('dim_hospital') }} dh 
+        on ds.hospital_id = dh.hospital_id 
+
+    left join {{ ref('dim_recipient') }} dr 
+        on ds.recipient_id = dr.recipient_id 
+
+    inner join {{ ref("dim_date") }} ddt 
+        on ds.date = ddt.full_date
 
 )
 

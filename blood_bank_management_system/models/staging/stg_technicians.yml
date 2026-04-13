@@ -22,7 +22,7 @@ models:
         # tests:
         #   - not_null
 
-      - name: technician_name
+      - name: name
         description: "Full name of the technician"
         tests:
           - not_null

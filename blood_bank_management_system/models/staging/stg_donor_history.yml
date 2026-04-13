@@ -4,7 +4,7 @@ models:
   - name: stg_donor_history 
     description: "Staging model for donor history data." 
     columns: 
-      - name: donor_history_id 
+      - name: history_id 
         description: "Unique identifier for each donor history record."
         tests: 
           - unique 

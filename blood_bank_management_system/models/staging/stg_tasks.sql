@@ -1,12 +1,23 @@
+{{ 
+    config(
+        materialized='incremental',
+        unique_key='task_id',
+        incremental_strategy='delete+insert'
+    ) 
+}}
+
 with source as (
-    SELECT * FROM {{source('raw', 'tasks')}}
+    select * 
+    from {{ source('raw', 'tasks') }}
+
 ), 
+
 cleaned as (
+
     select
         task_id::int as task_id,
-        initcap(trim(description))::varchar as task_description,
+        initcap(trim(description)) as description,
         ingested_at::timestamp as ingested_at
-
     from source
 )
 

@@ -6,9 +6,9 @@ WITH per_day_inventory_levels AS (
         SUM(fi.volume_ml) AS total_volume_available
     FROM {{ ref('fct_blood_inventory') }} fi
     JOIN {{ ref('dim_date') }} rec_ddt
-        ON fi.date_received_sk = rec_ddt.date_sk
+        ON fi.date_received_id = rec_ddt.date_id
     JOIN {{ ref('dim_date') }} exp_ddt
-        ON fi.expiration_date_sk = exp_ddt.date_sk
+        ON fi.expiration_date_id = exp_ddt.date_id
     JOIN {{ ref('dim_date') }} ddt
         ON ddt.full_date BETWEEN rec_ddt.full_date AND exp_ddt.full_date
     WHERE fi.quality = 'Good'

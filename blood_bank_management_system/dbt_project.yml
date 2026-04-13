@@ -33,11 +33,11 @@ models:
   blood_bank_management_system:
     staging:
       +schema: staging
-      +materialized: table
+      +materialized: incremental
 
     analytics:
       +schema: analytics
-    
+      
     reports:
       +schema: analytics
       +materialized: view

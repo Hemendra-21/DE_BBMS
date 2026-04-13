@@ -1,8 +1,19 @@
+{{ 
+    config(
+        materialized='incremental',
+        unique_key='donation_id',
+        incremental_strategy='delete+insert'
+    ) 
+}}
+
 with source as (
-    select * from {{ source('raw', 'donations') }}
+    select * 
+    from {{ source('raw', 'donations') }}
+
 ),
 
 cleaned as (
+
     select 
         donation_id::int as donation_id,
         donor_id::int as donor_id,
@@ -12,13 +23,12 @@ cleaned as (
         processed_by_technician_id::int as processed_by_technician_id,
         test_result_id::int as test_result_id,
 
-        nullif(date, '0000-00-00')::date as donation_date,
+        nullif(date, '0000-00-00')::date as date,
 
-        quantity::int as volume_ml,
+        quantity::int as quantity,
 
-        upper(trim(blood_group))::varchar as blood_group,
-
-        lower(trim(status))::varchar as donation_status,
+        upper(trim(blood_group)) as blood_group,
+        lower(trim(status)) as status,
 
         bag_serial_number::varchar as bag_serial_number,
 
@@ -26,9 +36,10 @@ cleaned as (
 
         nullif(expiration_date, '0000-00-00')::date as expiration_date,
 
-        lower(trim(donation_type))::varchar as donation_type,
+        lower(trim(donation_type)) as donation_type,
 
         ingested_at::timestamp as ingested_at
+
     from source
 )
 

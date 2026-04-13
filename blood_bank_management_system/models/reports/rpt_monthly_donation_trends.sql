@@ -10,8 +10,8 @@ with donation_details as (
 		ddt.month,
 		ddt.month_name 
 	from {{ ref('fct_donations') }} fd
-	left join {{ ref('dim_donor') }} dd on fd.donor_sk = dd.donor_sk 
-	left join {{ ref('dim_date') }} ddt on fd.donation_date_sk = ddt.date_sk
+	left join {{ ref('dim_donor') }} dd on fd.donor_id = dd.donor_id 
+	left join {{ ref('dim_date') }} ddt on fd.donation_date_id = ddt.date_id
 )
 
 select 

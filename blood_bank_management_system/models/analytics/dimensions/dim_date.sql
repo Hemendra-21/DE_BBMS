@@ -14,7 +14,7 @@ with date_series as (
 
 
 select 
-    to_char(full_date, 'YYYYMMDD')::int as date_sk,
+    to_char(full_date, 'YYYYMMDD')::int as date_id,
     full_date,
     extract(day from full_date) as day,
     extract(month from full_date) as month,

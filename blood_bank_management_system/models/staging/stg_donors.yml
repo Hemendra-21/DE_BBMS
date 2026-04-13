@@ -12,17 +12,17 @@ models:
           - not_null
           - unique
 
-      - name: donor_name
+      - name: name
         description: "Full name of donor"
         tests:
           - not_null
 
-      - name: donor_age
+      - name: age
         description: "Age of donor"
         tests:
           - not_null
 
-      - name: donor_gender
+      - name: gender
         description: "Gender of donor"
         tests:
           - not_null

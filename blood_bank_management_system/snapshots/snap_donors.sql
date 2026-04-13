@@ -6,20 +6,20 @@
             unique_key='donor_id',
             strategy='check',
             check_cols=[
-                'donor_name',
+                'name',
                 'is_eligible',
-                'donor_location'
+                'location'
             ]
         )
     }}
 
     select 
         donor_id,
-        donor_name,
-        donor_gender,
-        blood_group as donor_blood_group,
+        name,
+        gender,
+        blood_group,
         is_eligible,
-        donor_location
+        location
     from {{ ref('stg_donors') }}
 
 {% endsnapshot %}

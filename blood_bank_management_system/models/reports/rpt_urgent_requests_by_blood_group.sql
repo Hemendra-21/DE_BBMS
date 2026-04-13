@@ -5,7 +5,7 @@ WITH requests_by_blood_group AS (
         COUNT(*) FILTER (WHERE fbr.urgency = 'high') AS high_urgency_requests
     FROM {{ ref('fct_blood_requests') }} fbr
     LEFT JOIN {{ ref('dim_recipient') }} dr 
-        ON fbr.recipient_sk = dr.recipient_sk
+        ON fbr.recipient_id = dr.recipient_id
     GROUP BY dr.recipient_blood_group
 )
 

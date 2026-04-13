@@ -22,7 +22,7 @@ models:
         tests:
             - not_null
 
-      - name: test_date
+      - name: date
         description: "Date the test was performed"
         tests:
           - not_null

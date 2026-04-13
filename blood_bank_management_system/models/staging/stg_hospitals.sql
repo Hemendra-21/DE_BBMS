@@ -1,37 +1,47 @@
+{{ 
+    config(
+        materialized='incremental',
+        unique_key='hospital_id',
+        incremental_strategy='delete+insert'
+    ) 
+}}
+
 with source as (
-    SELECT * FROM {{source('raw', 'hospitals')}}
+    select * 
+    from {{ source('raw', 'hospitals') }}
+
 ),
 
 cleaned as (
+
     select
         hospital_id::int as hospital_id,
 
-        initcap(trim(name))::varchar as hospital_name,
-        initcap(trim(street_address))::varchar as street_address,
-        initcap(trim(city))::varchar as city,
-        initcap(trim(province))::varchar as province,
+        initcap(trim(name)) as name,
+        initcap(trim(street_address)) as street_address,
+        initcap(trim(city)) as city,
+        initcap(trim(province)) as province,
 
-        upper(trim(postal_code))::varchar as postal_code,
-        initcap(trim(country))::varchar as country,
+        upper(trim(postal_code)) as postal_code,
+        initcap(trim(country)) as country,
 
-        trim(phone_number)::varchar as phone_number,
-        lower(trim(email_address))::varchar as email_address,
+        trim(phone_number) as phone_number,
+        lower(trim(email_address)) as email_address,
 
-        lower(trim(hospital_type))::varchar as hospital_type,
+        lower(trim(hospital_type)) as hospital_type,
 
         case 
             when operating_hours ilike '%24%' then '24/7' 
-            else trim(operating_hours)::varchar
+            else trim(operating_hours)
         end as operating_hours,
 
-        lower(trim(accreditation_status))::varchar as accreditation_status,
+        lower(trim(accreditation_status)) as accreditation_status,
 
-        trim(emergency_contact)::varchar as emergency_contact,
+        trim(emergency_contact) as emergency_contact,
 
         ingested_at::timestamp as ingested_at
+
     from source
 )
 
 select * from cleaned
-
-

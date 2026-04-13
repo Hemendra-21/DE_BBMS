@@ -3,10 +3,14 @@ version: 2
 models:
   - name: stg_blood_type_compatibility
     description: "A staging table that contains blood type compatibility information."
+
     columns:
       - name: donor_blood_group
         description: "The blood group of the donor."
-      
+
       - name: recipient_blood_group
         description: "The blood group of the recipient."
-        
+
+    tests:
+      - unique:
+          column_name: "donor_blood_type || '-' || recipient_blood_type"

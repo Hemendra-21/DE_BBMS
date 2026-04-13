@@ -1,5 +1,17 @@
+{{
+    config(
+        materialized='incremental',
+        unique_key='test_id',
+        incremental_strategy='delete+insert'
+    )
+}}
+
 with source as (
-    select * from {{ source('raw', 'blood_tests') }}
+
+    -- always read full snapshot
+    select * 
+    from {{ source('raw', 'blood_tests') }}
+
 ),
 
 cleaned as (
@@ -14,15 +26,14 @@ cleaned as (
             else date::date
         end as test_date,
 
-        nullif(trim(disease_tested), '')  as disease_tested,
+        nullif(trim(disease_tested), '') as disease_tested,
         result::varchar as result,
         trim(test_type) as test_type,
         nullif(trim(comments), '') as comments,
+
         ingested_at::timestamp as ingested_at
 
     from source
-
 )
 
-select * from cleaned 
-where test_date is not null
+select * from cleaned

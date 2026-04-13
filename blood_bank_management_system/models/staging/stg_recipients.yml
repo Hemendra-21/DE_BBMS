@@ -19,7 +19,7 @@ models:
               to: ref('stg_hospitals')
               field: hospital_id
 
-      - name: recipient_name
+      - name: name
         description: "Full name of recipient"
         tests:
           - not_null

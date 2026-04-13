@@ -10,7 +10,7 @@ models:
           - not_null
           - unique
 
-      - name: task_description
+      - name: description
         description: "Detailed description of the task"
         tests:
           - not_null  

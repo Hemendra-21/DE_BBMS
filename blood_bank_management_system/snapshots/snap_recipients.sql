@@ -6,9 +6,9 @@
         unique_key='recipient_id',
         strategy='check',
         check_cols=[
-            'recipient_name',
-            'recipient_age',
-            'recipient_location' 
+            'name',
+            'age',
+            'location' 
         ]
     )
 }}

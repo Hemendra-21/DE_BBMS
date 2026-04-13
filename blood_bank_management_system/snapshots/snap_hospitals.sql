@@ -6,13 +6,10 @@
             unique_key='hospital_id',
             strategy='check',
             check_cols=[
-                'hospital_name',
-                'hospital_city',
+                'name',
+                'city',
                 'phone_number',
                 'hospital_type',
-                'operating_hours',
-                'accreditation_status',
-                'emergency_contact'
             ]
         )
     }}
