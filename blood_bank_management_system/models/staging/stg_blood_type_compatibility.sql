@@ -12,9 +12,8 @@ with source as (
 cleaned as (
     select
         upper(trim(donor_blood_type))::varchar as donor_blood_type,
-        upper(trim(recipient_blood_type))::varchar as recipient_blood_type,
-        ingested_at::timestamp as ingested_at
+        upper(trim(recipient_blood_type))::varchar as recipient_blood_type
     from source
 )
 
-select * from cleaned
+select distinct * from cleaned

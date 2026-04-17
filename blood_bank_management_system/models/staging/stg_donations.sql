@@ -7,6 +7,7 @@
 }}
 
 with source as (
+
     select * 
     from {{ source('raw', 'donations') }}
 
@@ -23,7 +24,10 @@ cleaned as (
         processed_by_technician_id::int as processed_by_technician_id,
         test_result_id::int as test_result_id,
 
-        nullif(date, '0000-00-00')::date as date,
+        case 
+            when trim(cast(date as text)) in ('0000-00-00', '', 'NA') then null
+            else cast(date as date)
+        end as date,
 
         quantity::int as quantity,
 
@@ -34,11 +38,14 @@ cleaned as (
 
         storage_temperature::numeric(4,1) as storage_temperature,
 
-        nullif(expiration_date, '0000-00-00')::date as expiration_date,
+        case 
+            when trim(cast(expiration_date as text)) in ('0000-00-00', '', 'NA') then null
+            else cast(expiration_date as date)
+        end as expiration_date,
 
         lower(trim(donation_type)) as donation_type,
 
-        ingested_at::timestamp as ingested_at
+        current_timestamp as ingested_at
 
     from source
 )

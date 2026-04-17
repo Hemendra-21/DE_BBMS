@@ -5,7 +5,7 @@
 }}
 
 with snap as (
-    select * from {{ ref('snap_hospitals') }}
+    select * from {{ ref('snap_recipients') }}
 ),
 
 latest as (
@@ -15,11 +15,10 @@ latest as (
 )
 
 select 
-    hospital_id,
-    name as hospital_name,
-    city,
-    country,
-    phone_number,
-    hospital_type,
-    accreditation_status
+    recipient_id,
+
+    trim(name) as recipient_name,
+    upper(trim(blood_group)) as recipient_blood_group,
+    trim(location) as recipient_location
+
 from latest

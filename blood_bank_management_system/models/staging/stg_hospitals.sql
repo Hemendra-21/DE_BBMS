@@ -7,6 +7,7 @@
 }}
 
 with source as (
+
     select * 
     from {{ source('raw', 'hospitals') }}
 
@@ -39,7 +40,7 @@ cleaned as (
 
         trim(emergency_contact) as emergency_contact,
 
-        ingested_at::timestamp as ingested_at
+        current_timestamp as ingested_at
 
     from source
 )

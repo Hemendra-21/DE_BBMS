@@ -1,7 +1,7 @@
 {{
     config(
         materialized='incremental',
-        unique_key=['recipient_id', 'hospital_id', 'required_date'],
+        unique_key=['recipient_id', 'hospital_id', 'blood_required_date_id'],
         incremental_strategy='delete+insert'
     )
 }}
@@ -9,7 +9,7 @@
 with max_ingested as (
 
     {% if is_incremental() %}
-        select coalesce(max(ingested_at), '1900-01-01') as max_ingested_at
+        select coalesce(max(ingested_at), '1900-01-01'::timestamp) as max_ingested_at
         from {{ this }}
     {% else %}
         select '1900-01-01'::timestamp as max_ingested_at
@@ -28,10 +28,8 @@ recipient_source as (
 final as (
 
     select 
-        -- grain (no surrogate key)
         rs.recipient_id,
         rs.hospital_id,
-        rs.required_date,
 
         ddt.date_id as blood_required_date_id,
 
@@ -41,14 +39,12 @@ final as (
 
     from recipient_source rs 
 
-    left join {{ ref("dim_recipient") }} dr 
-        on rs.recipient_id = dr.recipient_id 
-
-    left join {{ ref("dim_hospital") }} dh 
-        on rs.hospital_id = dh.hospital_id 
-
     inner join {{ ref("dim_date") }} ddt 
         on rs.required_date = ddt.full_date 
+
+    where rs.recipient_id is not null
+      and rs.hospital_id is not null
+      and rs.required_date is not null
 
 )
 

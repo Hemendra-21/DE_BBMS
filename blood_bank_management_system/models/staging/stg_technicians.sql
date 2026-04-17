@@ -26,8 +26,10 @@ cleaned as (
         trim(phone_number) as phone_number,
         lower(trim(email_address)) as email_address,
 
-        ingested_at::timestamp as ingested_at
+        current_timestamp as ingested_at
+
     from source
+    where technician_id is not null
 )
 
 select * from cleaned

@@ -7,6 +7,7 @@
 }}
 
 with source as (
+
     select * 
     from {{ source('raw', 'donor_history') }}
 
@@ -20,9 +21,10 @@ cleaned as (
         donation_id::int as donation_id,
         lower(trim(reaction)) as reaction,
         notes::varchar as notes,
-        ingested_at::timestamp as ingested_at
+
+        current_timestamp as ingested_at
+
     from source
 )
-
 
 select * from cleaned

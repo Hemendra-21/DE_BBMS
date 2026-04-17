@@ -7,6 +7,7 @@
 }}
 
 with source as (
+
     select * 
     from {{ source('raw', 'donors') }}
 
@@ -22,7 +23,8 @@ cleaned as (
         age::int as age,
         gender::varchar as gender,
         weight::numeric(5,2) as weight,
-        blood_group::varchar as blood_group,
+
+        upper(trim(blood_group)) as blood_group,
         last_donation_date::date as last_donation_date,
 
         case 
@@ -49,7 +51,7 @@ cleaned as (
         (blood_group_o_plus = '1') as blood_group_o_plus,    
         (blood_group_o_minus = '1') as blood_group_o_minus,
 
-        ingested_at::timestamp as ingested_at
+        current_timestamp as ingested_at
 
     from source
 )

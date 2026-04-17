@@ -7,6 +7,7 @@
 }}
 
 with source as (
+
     select * 
     from {{ source('raw', 'blood_inventory') }}
 
@@ -14,37 +15,29 @@ with source as (
 
 cleaned as (
 
-    select *
-    from (
-        select
-            inventory_id::int as inventory_id,
-            donation_id::int as donation_id,
-            recipient_id::int as recipient_id,
+    select
+        inventory_id::int as inventory_id,
+        donation_id::int as donation_id,
 
-            upper(trim(blood_group)) as blood_group,
-            initcap(trim(quality)) as quality,
-            lower(trim(status)) as status,
+       case 
+            when trim(recipient_id::text) in ('', 'NA', 'null') then null
+            else recipient_id::int
+        end as recipient_id,
+        
+        upper(trim(blood_group)) as blood_group,
+        initcap(trim(quality)) as quality,
+        lower(trim(status)) as status,
 
-            units_available::int as units_available,
-            volume::int as volume,
-            temperature::numeric(3,1) as temperature,
+        units_available::int as units_available,
+        volume::int as volume,
+        temperature::numeric(3,1) as temperature,
 
-            date_received::date as date_received,
-            expiration_date::date as expiration_date,
+        date_received::date as date_received,
+        expiration_date::date as expiration_date,
 
-            ingested_at::timestamp as ingested_at,
+        current_timestamp as ingested_at
 
-            -- keep latest if duplicates exist in same load
-            row_number() over (
-                partition by inventory_id
-                order by ingested_at desc
-            ) as rn
-
-        from source
-
-    ) t
-    where rn = 1
-
+    from source
 )
 
 select * from cleaned

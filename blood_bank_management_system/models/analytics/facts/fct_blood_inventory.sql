@@ -48,7 +48,6 @@ final as (
 
     from blood_inventory_source bis
 
-
     left join {{ ref('fct_donations') }} fd 
         on bis.donation_id = fd.donation_id
 
@@ -57,6 +56,8 @@ final as (
 
     left join {{ ref("dim_date") }} ddt_expired 
         on bis.expiration_date = ddt_expired.full_date 
+
+    where bis.inventory_id is not null
 
 )
 

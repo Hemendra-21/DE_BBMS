@@ -7,6 +7,7 @@
 }}
 
 with source as (
+
     select * 
     from {{ source('raw', 'recipients') }}
 
@@ -29,7 +30,7 @@ cleaned as(
 
         initcap(trim(location)) as location,
 
-        ingested_at::timestamp as ingested_at
+        current_timestamp as ingested_at
 
     from source
 )

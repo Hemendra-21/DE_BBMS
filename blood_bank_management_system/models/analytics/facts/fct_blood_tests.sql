@@ -9,7 +9,7 @@
 with max_ingested as (
 
     {% if is_incremental() %}
-        select coalesce(max(ingested_at), '1900-01-01') as max_ingested_at
+        select coalesce(max(ingested_at), '1900-01-01'::timestamp) as max_ingested_at
         from {{ this }}
     {% else %}
         select '1900-01-01'::timestamp as max_ingested_at
@@ -17,31 +17,33 @@ with max_ingested as (
 
 ),
 
-blood_tests_source as (
+source_data as (
 
-    select * 
-    from {{ ref("stg_blood_tests") }}
-    where ingested_at >= (select max_ingested_at from max_ingested)
+    select *
+    from {{ ref('stg_blood_tests') }}
+    where ingested_at > (select max_ingested_at from max_ingested)
 
 ),
 
 final as (
 
     select 
-        bts.test_id as blood_test_id,
-        bts.donor_id,
-        ddt.date_id as blood_test_date_id,
-        bts.disease_tested,
-        bts.result as test_result,
-        bts.ingested_at
+        s.test_id as blood_test_id,
 
-    from blood_tests_source bts
+        s.donor_id,
+        s.donation_id,
+        d.date_id as blood_test_date_id,
 
-    left join {{ ref("dim_donor") }} dd 
-        on bts.donor_id = dd.donor_id 
+        s.test_type,
+        s.result as test_result,
+        s.ingested_at
 
-    inner join {{ ref("dim_date") }} ddt 
-        on bts.test_date = ddt.full_date
+    from source_data s
+
+    inner join {{ ref('dim_date') }} d
+        on s.test_date = d.full_date
+
+    where s.test_id is not null
 
 )
 

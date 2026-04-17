@@ -7,6 +7,7 @@
 }}
 
 with source as (
+
     select * 
     from {{ source('raw', 'tasks') }}
 
@@ -16,9 +17,10 @@ cleaned as (
 
     select
         task_id::int as task_id,
-        initcap(trim(description)) as description,
-        ingested_at::timestamp as ingested_at
+        initcap(trim(description)) as description
+
     from source
+    where task_id is not null
 )
 
 select * from cleaned
