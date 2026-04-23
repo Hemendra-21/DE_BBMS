@@ -4,12 +4,6 @@ models:
   - name: dim_hospital
     description: "Dimension table for hospitals, containing details about each hospital."
     columns:
-      - name: hospital_sk 
-        description: "Surrogate key for the hospital dimension"
-        tests:
-          - unique 
-          - not_null
-
       - name: hospital_id 
         description: "Natural key for the hospital, typically the original ID from the source system"
         tests:
@@ -21,17 +15,17 @@ models:
         tests:
           - not_null
 
-      - name: city
+      - name: hospital_city
         description: "City where the hospital is located"
         tests:
           - not_null
 
-      - name: country
+      - name: hospital_country
         description: "Country where the hospital is located"
         tests:
           - not_null
         
-      - name: phone_number
+      - name: hospital_phone_number
         description: "Contact phone number for the hospital"
         tests:
           - not_null

@@ -8,12 +8,13 @@ models:
         description: "Unique identifier for each technician"
         tests:
           - not_null
-          - unique
+         
+
       - name: task_id
         description: "Unique identifier for each task"
         tests:
           - not_null
-          - unique
+       
           
       - name: ingested_at
         description: "Timestamp when record was loaded into raw layer"

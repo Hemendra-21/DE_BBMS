@@ -16,10 +16,12 @@
     select 
         donor_id,
         name,
+        age,
         gender,
         blood_group,
         is_eligible,
-        location
+        location,
+        last_donation_date
     from {{ ref('stg_donors') }}
 
 {% endsnapshot %}

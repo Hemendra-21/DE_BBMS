@@ -4,12 +4,6 @@ models:
   - name: dim_donor
     description: "A dimension table that contains information about donors."
     columns:
-      - name: donor_sk
-        description: "Surrogate key for the donor dimension."
-        tests:
-          - unique
-          - not_null
-
       - name: donor_id 
         description: "Natural key for the donor, typically an ID from the source system."
         tests:
@@ -17,6 +11,11 @@ models:
 
       - name: donor_name
         description: "The name of the donor."
+        tests:
+          - not_null
+
+      - name: donor_age
+        description: "The age of the donor."
         tests:
           - not_null
 
@@ -39,13 +38,8 @@ models:
         description: "The location of the donor at the time of donation."
         tests:
           - not_null
-      
-      - name: valid_from
-        description: "The timestamp when the record became valid in the dimension."
-        tests:
-          - not_null
-      
-      - name: valid_to
-        description: "The timestamp when the record is no longer valid in the dimension."
-        
+
+      - name: last_donation_date
+        description: "The most recent donation date recorded for the donor."
+
           

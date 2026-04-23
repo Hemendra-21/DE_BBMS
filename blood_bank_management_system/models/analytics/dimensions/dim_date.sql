@@ -24,9 +24,13 @@ select
     to_char(full_date, 'YYYYMMDD')::int as date_id,
     full_date,
     extract(day from full_date) as day,
-    extract(month from full_date) as month,
-    trim(to_char(full_date, 'Month')) as month_name,
-    extract(year from full_date) as year,
-    extract(quarter from full_date) as quarter,
-    to_char(full_date, 'YYYY-MM') as year_month
+    extract(year from full_date)::int as year,
+    extract(month from full_date)::int as month_number,
+    extract(month from full_date)::int as month,
+    to_char(full_date, 'Mon') as month_name,
+    to_char(full_date, 'YYYY-MM') as year_month,
+    (
+        extract(year from full_date)::int * 100
+        + extract(month from full_date)::int
+    ) as year_month_sort
 from date_series

@@ -22,7 +22,7 @@ models:
         tests:
             - not_null
 
-      - name: date
+      - name: test_date
         description: "Date the test was performed"
         tests:
           - not_null
@@ -31,7 +31,20 @@ models:
         description: "Test result"
         tests:
           - accepted_values:
-              values: ['Positive', 'Negative']
+              values:
+                - A-
+                - A+
+                - AB-
+                - AB+
+                - B-
+                - B+
+                - Healthy
+                - Low
+                - Negative
+                - Normal
+                - O-
+                - O+
+                - Positive
 
       - name: test_type
         description: "Type of blood test performed"

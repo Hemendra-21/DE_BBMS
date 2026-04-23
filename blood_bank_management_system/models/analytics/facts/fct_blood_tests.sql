@@ -32,10 +32,12 @@ final as (
 
         s.donor_id,
         s.donation_id,
+
         d.date_id as blood_test_date_id,
 
-        s.test_type,
-        s.result as test_result,
+        s.test_type as blood_test_type,
+        s.result as blood_test_result,
+
         s.ingested_at
 
     from source_data s

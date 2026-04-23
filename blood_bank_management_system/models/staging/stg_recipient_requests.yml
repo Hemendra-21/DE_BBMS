@@ -1,0 +1,48 @@
+version: 2
+
+models:
+  - name: stg_recipient_requests
+    description: "Standardized staging model for recipient blood requests (event-level data)"
+
+    columns:
+
+      - name: request_id
+        description: "Primary key for each blood request"
+        tests:
+          - not_null
+          - unique
+
+      - name: recipient_id
+        description: "Foreign key referencing recipient"
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_recipients')
+                field: recipient_id
+
+      - name: hospital_id
+        description: "Foreign key referencing hospital"
+        tests:
+          - relationships:
+              arguments:
+                to: ref('stg_hospitals')
+                field: hospital_id
+
+      - name: required_date
+        description: "Date when blood is required"
+        tests:
+          - not_null
+
+      - name: urgency
+        description: "Urgency level for blood request"
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['low', 'medium', 'high']
+
+      - name: ingested_at
+        description: "Timestamp when record was loaded into staging"
+        tests:
+          - not_null

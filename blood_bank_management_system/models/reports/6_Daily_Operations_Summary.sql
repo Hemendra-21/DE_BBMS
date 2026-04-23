@@ -2,7 +2,7 @@
 with donations as (
 
     select *
-    from {{ ref('fct_donations') }}
+    from {{ ref('fct_blood_donations') }}
 
 ),
 

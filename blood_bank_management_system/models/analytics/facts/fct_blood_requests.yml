@@ -2,41 +2,51 @@ version: 2
 
 models:
   - name: fct_blood_requests
-    description: Fact table representing blood requests made by hospitals for recipients.
+    description: "Fact table representing blood requests made by hospitals for recipients (1 row = 1 request)"
 
     columns:
 
-      - name: blood_request_sk
-        description: Surrogate key identifying each blood request.
+      - name: request_id
+        description: "Primary key for each blood request"
         tests:
+          - not_null
           - unique
-          - not_null
 
-      - name: recipient_sk
-        description: Links to dim_recipient.
+      - name: recipient_id
+        description: "Foreign key referencing dim_recipients"
         tests:
           - not_null
           - relationships:
-              to: ref('dim_recipient')
-              field: recipient_sk
+              arguments:
+                to: ref('dim_recipients')
+                field: recipient_id
 
-      - name: hospital_sk
-        description: Links to dim_hospital.
+      - name: hospital_id
+        description: "Foreign key referencing dim_hospitals"
+        tests:
+          - relationships:
+              arguments:
+                to: ref('dim_hospitals')
+                field: hospital_id
+
+      - name: blood_required_date_id
+        description: "Date key representing when blood is required"
         tests:
           - not_null
           - relationships:
-              to: ref('dim_hospital')
-              field: hospital_sk
-
-      - name: blood_required_date_sk
-        description: Request date surrogate key.
-        tests:
-          - not_null
-          - relationships:
-              to: ref('dim_date')
-              field: date_sk
+              arguments:
+                to: ref('dim_date')
+                field: date_id
 
       - name: urgency
-        description: Urgency level of the request.
+        description: "Urgency level of the request"
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['high', 'medium', 'low']
+
+      - name: ingested_at
+        description: "Timestamp when record was loaded into fact table"
         tests:
           - not_null

@@ -15,7 +15,4 @@ models:
         tests:
           - not_null  
       
-      - name: ingested_at
-        description: "Timestamp when record was loaded into raw layer"
-        tests:
-          - not_null
+    

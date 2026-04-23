@@ -18,6 +18,7 @@ select
     recipient_id,
 
     trim(name) as recipient_name,
+    age as recipient_age,
     upper(trim(blood_group)) as recipient_blood_group,
     trim(location) as recipient_location
 

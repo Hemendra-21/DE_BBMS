@@ -1,7 +1,7 @@
 {{
     config(
         materialized='incremental',
-        unique_key=['recipient_id', 'hospital_id', 'blood_required_date_id'],
+        unique_key='request_id',
         incremental_strategy='delete+insert'
     )
 }}
@@ -17,17 +17,18 @@ with max_ingested as (
 
 ),
 
-recipient_source as (
+request_source as (
 
-    select * 
-    from {{ ref('stg_recipients') }}
-    where ingested_at >= (select max_ingested_at from max_ingested)
+    select *
+    from {{ ref('stg_recipient_requests') }}
+    where ingested_at > (select max_ingested_at from max_ingested)
 
 ),
 
 final as (
 
     select 
+        rs.request_id as blood_request_id,
         rs.recipient_id,
         rs.hospital_id,
 
@@ -37,13 +38,12 @@ final as (
 
         rs.ingested_at
 
-    from recipient_source rs 
+    from request_source rs
 
     inner join {{ ref("dim_date") }} ddt 
         on rs.required_date = ddt.full_date 
 
     where rs.recipient_id is not null
-      and rs.hospital_id is not null
       and rs.required_date is not null
 
 )

@@ -19,11 +19,12 @@ final as (
         donor_id,
 
         trim(name) as donor_name,
+        age as donor_age,
         upper(trim(gender)) as donor_gender,
         upper(trim(blood_group)) as donor_blood_group,
         is_eligible,
-
-        trim(location) as donor_location
+        trim(location) as donor_location,
+        last_donation_date
 
     from latest
 )

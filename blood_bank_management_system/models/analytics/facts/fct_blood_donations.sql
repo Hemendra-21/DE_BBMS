@@ -21,7 +21,7 @@ donation_source as (
 
     select * 
     from {{ ref('stg_donations') }}
-    where ingested_at >= (select max_ingested_at from max_ingested)
+    where ingested_at > (select max_ingested_at from max_ingested)
 
 ),
 
@@ -36,7 +36,7 @@ final as (
 
         ddt.date_id as donation_date_id,
 
-        ds.quantity as volume_ml,
+        ds.quantity as donated_volume_ml,
         ds.status as donation_status,
 
         ds.ingested_at

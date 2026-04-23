@@ -5,7 +5,7 @@ select
     dd.donor_blood_group as donated_blood_group,
     count(*) as total_donations	
 
-from {{ ref('fct_donations') }} fd
+from {{ ref('fct_blood_donations') }} fd
 
 left join {{ ref('dim_donor') }} dd 
     on fd.donor_id = dd.donor_id 

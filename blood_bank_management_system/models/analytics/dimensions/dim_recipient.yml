@@ -4,11 +4,6 @@ models:
   - name: dim_recipient
     description: "Dimension table for recipients, containing details about each recipient."
     columns:
-      - name: recipient_sk
-        description: "Surrogate key for the recipient dimension."
-        tests:
-          - unique
-          - not_null
 
       - name: recipient_id
         description: "Unique identifier for each recipient."

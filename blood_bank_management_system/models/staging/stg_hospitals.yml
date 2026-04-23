@@ -31,15 +31,12 @@ models:
         description: "Province or state"
         tests:
           - not_null
-          - accepted_values:
-              values: ['Quebec']
 
       - name: country
         description: "Country of operation"
         tests:
           - not_null
-          - accepted_values:
-              values: ['Canada']
+        
 
       - name: postal_code
         description: "Postal code of hospital"

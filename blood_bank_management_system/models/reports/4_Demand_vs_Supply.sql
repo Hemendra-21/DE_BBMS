@@ -19,11 +19,11 @@ with demand as (
 supply as (
 
     select 
-        date_received_id as date_id,
+        received_date_id as date_id,
         blood_group,
-        sum(units_available) as available_units
+        sum(available_units) as available_units
     from {{ ref('fct_blood_inventory') }}
-    group by date_received_id, blood_group
+    group by received_date_id, blood_group
 
 ),
 

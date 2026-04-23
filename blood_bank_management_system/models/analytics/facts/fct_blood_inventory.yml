@@ -13,41 +13,69 @@ models:
           - not_null
 
       - name: donation_id
-        description: Links inventory to the donation fact.
+        description: Links inventory to donation.
         tests:
           - not_null
           - relationships:
-              to: ref('fct_donations')
+              to: ref('fct_blood_donations')
               field: donation_id
 
-      - name: donor_sk
-        description: Surrogate key referencing dim_donor through donation fact.
+      - name: blood_group
+        description: Blood group of the stored blood unit.
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-']
+
+      - name: status
+        description: Inventory lifecycle status.
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['tested', 'stored', 'distributed', 'discarded']
+
+      - name: quality
+        description: Quality status of the blood unit.
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Good', 'Contaminated']
+
+      - name: available_units
+        description: Number of blood units available.
+        tests:
+          - not_null
+
+      - name: available_volume_ml
+        description: Available blood volume in milliliters.
+        tests:
+          - not_null
+
+      - name: recipient_id
+        description: Recipient identifier (only populated when blood is distributed).
         tests:
           - relationships:
-              to: ref('dim_donor')
-              field: donor_sk
+              to: ref('dim_recipient')
+              field: recipient_id
+              where: "recipient_id is not null"
 
-      - name: date_received_sk
-        description: Date when blood was received.
+      - name: received_date_id
+        description: Date when blood was received into inventory.
         tests:
           - not_null
           - relationships:
               to: ref('dim_date')
-              field: date_sk
+              field: date_id
 
-      - name: expiration_date_sk
-        description: Date when blood expires.
+      - name: expiration_date_id
+        description: Expiration date of the blood unit.
         tests:
           - relationships:
               to: ref('dim_date')
-              field: date_sk
+              field: date_id
+              where: "expiration_date_id is not null"
 
-      - name: units_available
-        description: Units of blood available.
-        tests:
-          - not_null
-
-      - name: volume_ml
-        description: Volume of blood in ml.
+      - name: ingested_at
+        description: Timestamp when record was ingested into staging.
         tests:
           - not_null

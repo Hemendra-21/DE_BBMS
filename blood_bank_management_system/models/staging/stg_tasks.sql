@@ -18,7 +18,6 @@ cleaned as (
     select
         task_id::int as task_id,
         initcap(trim(description)) as description
-
     from source
     where task_id is not null
 )

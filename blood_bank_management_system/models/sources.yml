@@ -14,6 +14,7 @@ sources:
       - name: blood_type_compatibility
       - name: hospitals
       - name: recipients 
+      - name: recipient_requests
       - name: technicians
       - name: tasks
       - name: technician_tasks

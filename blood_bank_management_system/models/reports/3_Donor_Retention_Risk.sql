@@ -14,7 +14,7 @@ last_donation as (
     select 
         fd.donor_id,
         max(ddt.full_date) as last_donation_date
-    from {{ ref('fct_donations') }} fd
+    from {{ ref('fct_blood_donations') }} fd
     join {{ ref('dim_date') }} ddt
         on fd.donation_date_id = ddt.date_id
     join eligible_donors ed   
@@ -27,7 +27,8 @@ select
     ed.donor_id,
     ed.donor_name,
     ed.donor_blood_group,
-    ld.last_donation_date
+    ld.last_donation_date,
+    current_date - ld.last_donation_date as days_since_last_donation
 
 from eligible_donors ed
 
