@@ -1,0 +1,52 @@
+version: 2
+
+models:
+  - name: dim_date 
+    description: "Dimension table for dates, containing details about each date."
+    columns:
+      - name: date_id
+        description: "Key for the date dimension."
+        tests:
+          - unique
+          - not_null
+        
+      - name: full_date
+        description: "Actual date value."
+        tests:
+          - not_null
+
+      - name: day
+        description: "Day component of the date."
+        tests:
+          - not_null
+
+      - name: month
+        description: "Month component of the date, retained for existing downstream references."
+        tests:
+          - not_null
+
+      - name: month_number
+        description: "Numeric month component of the date."
+        tests:
+          - not_null
+
+      - name: month_name
+        description: "Short month name for the date, such as Jan or Feb."
+        tests:
+          - not_null
+      
+      - name: year
+        description: "Year component of the date."
+        tests:
+          - not_null
+
+      - name: year_month
+        description: "Year and month formatted as YYYY-MM."
+        tests:
+          - not_null
+
+      - name: year_month_sort
+        description: "Sortable year-month key calculated as year * 100 + month."
+        tests:
+          - not_null
+    

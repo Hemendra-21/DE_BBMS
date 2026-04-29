@@ -1,0 +1,64 @@
+version: 2 
+
+models: 
+  - name: stg_donations 
+    description: "Standardized staging model for blood donation transactions" 
+    columns: 
+      - name: donation_id 
+        description: "Unique identifier for each donation."
+        tests: 
+          - unique 
+          - not_null
+
+      - name: donor_id 
+        description: "Unique identifier for each donor." 
+        tests: 
+          - not_null
+      
+      - name: hospital_id 
+        description: "Unique identifier for each hospital receiving the donation."
+        # tests: 
+        #   - not_null
+        
+      - name: blood_group 
+        description: "Blood group of the donation (e.g., A+, O-)."
+        tests: 
+          - not_null 
+          - accepted_values: 
+              values: ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-']
+      
+      - name: quantity
+        description: "Quantity of blood donated in milliliters."
+        tests: 
+          - not_null 
+      
+      - name: status 
+        description: "Current status of the donation (e.g., 'collected', 'completed')"
+        tests: 
+          - not_null 
+          - accepted_values: 
+              values: ['collected', 'tested', 'completed', 'discarded', 'distributed'] 
+      
+      - name: bag_serial_number 
+        description: "Serial number of the blood bag used for the donation."
+        tests: 
+          - unique
+      
+      - name: donation_type
+        description: "Type of donation"
+        tests:
+          - accepted_values:
+              values: ['whole_blood', 'plasma', 'platelets']
+
+      - name: expiration_date
+        description: "Expiration date of donated blood"
+        tests:
+          - not_null
+
+      - name: storage_temperature
+        description: "Storage temperature in Celsius"
+
+      - name: ingested_at
+        description: "Timestamp when record was loaded into raw layer"
+        tests:
+          - not_null

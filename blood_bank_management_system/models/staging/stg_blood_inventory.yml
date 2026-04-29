@@ -1,0 +1,57 @@
+version: 2
+
+models:
+  - name: stg_blood_inventory
+    description: "Standardized staging model for blood inventory data"
+
+    columns:
+      - name: inventory_id
+        description: "Unique identifier for each inventory record"
+        tests:
+          - not_null
+          - unique
+        
+      - name: donation_id
+        description: "Record of the donation associated with this inventory entry"
+
+      - name: recipient_id
+        description: "Recipient associated with the blood unit, if distributed"
+        
+      - name: blood_group
+        description: "Standardized blood group of the blood unit"
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-']
+
+      - name: quality
+        description: "Blood quality status"
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Good', 'Contaminated']
+
+      - name: status
+        description: "Current status of the blood unit in inventory"
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['stored', 'tested', 'distributed', 'discarded']
+
+      - name: units_available
+        description: "Available units"
+        tests:
+          - not_null
+
+      - name: temperature
+        description: "Storage temperature in Celsius"
+
+      - name: date_received
+        description: "Date when blood was received"
+        tests:
+          - not_null
+       
+      - name: expiration_date
+        description: "Expiration date of blood unit"
+        tests:
+          - not_null

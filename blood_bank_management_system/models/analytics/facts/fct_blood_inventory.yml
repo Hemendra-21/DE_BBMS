@@ -1,0 +1,81 @@
+version: 2
+
+models:
+  - name: fct_blood_inventory
+    description: Fact table representing blood inventory derived from donation records.
+
+    columns:
+
+      - name: inventory_id
+        description: Unique identifier for each inventory record.
+        tests:
+          - unique
+          - not_null
+
+      - name: donation_id
+        description: Links inventory to donation.
+        tests:
+          - not_null
+          - relationships:
+              to: ref('fct_blood_donations')
+              field: donation_id
+
+      - name: blood_group
+        description: Blood group of the stored blood unit.
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-']
+
+      - name: status
+        description: Inventory lifecycle status.
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['tested', 'stored', 'distributed', 'discarded']
+
+      - name: quality
+        description: Quality status of the blood unit.
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Good', 'Contaminated']
+
+      - name: available_units
+        description: Number of blood units available.
+        tests:
+          - not_null
+
+      - name: available_volume_ml
+        description: Available blood volume in milliliters.
+        tests:
+          - not_null
+
+      - name: recipient_id
+        description: Recipient identifier (only populated when blood is distributed).
+        tests:
+          - relationships:
+              to: ref('dim_recipient')
+              field: recipient_id
+              where: "recipient_id is not null"
+
+      - name: received_date_id
+        description: Date when blood was received into inventory.
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_date')
+              field: date_id
+
+      - name: expiration_date_id
+        description: Expiration date of the blood unit.
+        tests:
+          - relationships:
+              to: ref('dim_date')
+              field: date_id
+              where: "expiration_date_id is not null"
+
+      - name: ingested_at
+        description: Timestamp when record was ingested into staging.
+        tests:
+          - not_null

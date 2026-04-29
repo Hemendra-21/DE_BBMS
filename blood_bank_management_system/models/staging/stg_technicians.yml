@@ -1,0 +1,44 @@
+version: 2 
+
+models:
+  - name: stg_technicians
+    description: "Standardized staging model for technicians involved in blood bank management"
+
+    columns:
+
+      - name: technician_id
+        description: "Unique identifier for each technician"
+        tests:
+          - not_null
+          - unique
+
+      - name: hospital_id 
+        description: "Identifier for the hospital where the technician is assigned"
+        # tests:
+        #   - not_null
+
+      - name: assigned_hospital_id 
+        description: "Identifier for the hospital to which the technician is currently assigned"
+        # tests:
+        #   - not_null
+
+      - name: name
+        description: "Full name of the technician"
+        tests:
+          - not_null
+
+      - name: qualification 
+        description: "Educational qualifications of the technician"
+        tests:
+          - not_null
+
+      - name: phone_number 
+        description: "Contact number of the technician"
+        tests:
+          - not_null
+          - unique
+
+      - name: ingested_at 
+        description: "Timestamp when the technician data was ingested into the staging area"
+        tests:
+          - not_null
