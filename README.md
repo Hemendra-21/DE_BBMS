@@ -157,7 +157,7 @@ Provides a high-level overview of operational performance:
 
 Due to large file sizes (1GB+), the complete datasets are not stored in this repository.
 
-🔗 Download Full Dataset: <dataset-link>
+🔗 Download Full Dataset: https://drive.google.com/drive/folders/104hkOMI9aoXkIVbSYx5wx_yXMRjeftJ6?usp=sharing
 
 ### 📥 Setup Instructions
 
@@ -171,7 +171,7 @@ Due to large file sizes (1GB+), the complete datasets are not stored in this rep
 
 ## 📊 Power BI Reports
 
-🔗 View Dashboard: <powerbi-report-link>
+🔗 View Dashboard: https://app.powerbi.com/links/VjoFBUAwvY?ctid=5e9df40b-ba9c-46b1-a9bd-07f345412c4f&pbi_source=linkShare
 
 The Power BI reports are built on the analytics layer and provide interactive insights into:
 
