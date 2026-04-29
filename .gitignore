@@ -1,0 +1,25 @@
+# Virtual environment
+venv/
+
+# Logs
+logs/
+*.log
+
+# Data files
+*.csv
+*.xlsx
+*.parquet
+
+# Large folders
+master/CSV Files/
+
+# Power BI
+*.pbix
+
+# Python
+__pycache__/
+*.pyc
+
+# OS files
+.DS_Store
+Thumbs.db

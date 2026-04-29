@@ -1,0 +1,9 @@
+intro
+project
+facts and dimensions
+star and snowflake schema - with advantages and disadvantages and related types.
+scd types 
+query performance tuning
+how and where do you utilize indexes created on columns?
+how a partitioned column is utilized in a query ? and bucketing 
+

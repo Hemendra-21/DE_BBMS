@@ -1,0 +1,18 @@
+# dbt build artifacts
+
+target/
+dbt_packages/
+
+# Logs
+
+logs/
+*.log
+
+# Local environment files
+
+.env
+
+# OS / editor files
+
+.DS_Store
+Thumbs.db

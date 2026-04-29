@@ -1,0 +1,22 @@
+version: 2 
+
+models: 
+  - name: stg_technician_tasks
+    description: "Standardized staging model for technician tasks related to blood bank management"
+    columns: 
+      - name: technician_id
+        description: "Unique identifier for each technician"
+        tests:
+          - not_null
+         
+
+      - name: task_id
+        description: "Unique identifier for each task"
+        tests:
+          - not_null
+       
+          
+      - name: ingested_at
+        description: "Timestamp when record was loaded into raw layer"
+        tests:
+          - not_null

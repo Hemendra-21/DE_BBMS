@@ -1,0 +1,41 @@
+version: 2
+
+models:
+  - name: stg_blood_tests
+    description: "Cleaned staging model for blood test records"
+
+    columns:
+
+      - name: test_id
+        description: "Unique identifier for each blood test"
+        tests:
+          - not_null
+          - unique
+
+      - name: donor_id
+        description: "ID of the donor associated with this blood test"
+        tests:
+          - not_null
+
+      - name: technician_id
+        description: "ID of the technician who performed the test"
+        tests:
+            - not_null
+
+      - name: test_date
+        description: "Date the test was performed"
+        tests:
+          - not_null
+
+      - name: result
+        description: "Test result"
+        tests:
+          - accepted_values:
+              values:
+                - Negative
+                - Positive
+
+      - name: test_type
+        description: "Type of blood test performed"
+        tests:
+          - not_null
