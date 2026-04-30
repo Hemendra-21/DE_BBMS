@@ -171,7 +171,7 @@ Due to large file sizes (1GB+), the complete datasets are not stored in this rep
 
 ## 📊 Power BI Reports
 
-🔗 View Dashboard: https://app.powerbi.com/links/VjoFBUAwvY?ctid=5e9df40b-ba9c-46b1-a9bd-07f345412c4f&pbi_source=linkShare
+🔗 View Dashboard: https://app.powerbi.com/links/VjoFBUAwvY?ctid=5e9df40b-ba9c-46b1-a9bd-07f345412c4f&pbi_source=linkShare&bookmarkGuid=31bab87c-9576-44ee-bc75-c1b58a412534
 
 The Power BI reports are built on the analytics layer and provide interactive insights into:
 
