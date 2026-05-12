@@ -5,7 +5,7 @@
 }}
 
 with source as (
-    select * 
+    select *
     from {{ source('raw', 'blood_type_compatibility') }}
 ),
 

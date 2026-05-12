@@ -8,10 +8,10 @@
 
 with source as (
 
-    select * 
+    select *
     from {{ source('raw', 'technicians') }}
 
-), 
+),
 
 cleaned as (
 
@@ -20,7 +20,7 @@ cleaned as (
         hospital_id::int as hospital_id,
         assigned_hospital_id::int as assigned_hospital_id,
 
-        initcap(trim(name)) as name,
+        initcap(trim(name)) as technician_name,
         initcap(trim(qualification)) as qualification,
 
         trim(phone_number) as phone_number,

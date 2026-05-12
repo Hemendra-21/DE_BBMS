@@ -8,7 +8,7 @@
 
 with source as (
 
-    select * 
+    select *
     from {{ source('raw', 'recipient_requests') }}
 
 ),

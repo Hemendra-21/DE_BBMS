@@ -14,7 +14,7 @@ latest as (
     where dbt_valid_to is null
 )
 
-select 
+select
     hospital_id,
 
     trim(name) as hospital_name,

@@ -8,14 +8,14 @@
 
 with source as (
 
-    select * 
+    select *
     from {{ source('raw', 'donations') }}
 
 ),
 
 cleaned as (
 
-    select 
+    select
         donation_id::int as donation_id,
         donor_id::int as donor_id,
         hospital_id::int as hospital_id,
@@ -24,23 +24,25 @@ cleaned as (
         processed_by_technician_id::int as processed_by_technician_id,
         test_result_id::int as test_result_id,
 
-        case 
-            when trim(cast(date as text)) in ('0000-00-00', '', 'NA') then null
-            else cast(date as date)
-        end as date,
-
         quantity::int as quantity,
-
-        upper(trim(blood_group)) as blood_group,
-        lower(trim(status)) as status,
 
         bag_serial_number::varchar as bag_serial_number,
 
-        storage_temperature::numeric(4,1) as storage_temperature,
+        storage_temperature::numeric(4, 1) as storage_temperature,
+        case
+            when trim(date::text) in ('0000-00-00', '', 'NA') then null
+            else date::date
+        end as donation_date,
 
-        case 
-            when trim(cast(expiration_date as text)) in ('0000-00-00', '', 'NA') then null
-            else cast(expiration_date as date)
+        upper(trim(blood_group)) as blood_group,
+
+        lower(trim(status)) as status,
+
+        case
+            when
+                trim(expiration_date::text) in ('0000-00-00', '', 'NA')
+                then null
+            else expiration_date::date
         end as expiration_date,
 
         lower(trim(donation_type)) as donation_type,

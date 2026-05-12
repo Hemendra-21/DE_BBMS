@@ -1,5 +1,7 @@
 # 🩸 Blood Bank Analytics & Reporting System
 
+End-to-end Data Engineering project simulating a real-world Blood Bank system using PostgreSQL, dbt, and Power BI.
+
 This project focuses on transforming blood bank operational data into meaningful insights and actionable reports.
 
 A scalable data pipeline is designed using modern data engineering practices to simulate real-world scenarios, enabling analysis of donation trends, demand-supply gaps, donor behavior, and operational efficiency.
@@ -171,7 +173,7 @@ Due to large file sizes (1GB+), the complete datasets are not stored in this rep
 
 ## 📊 Power BI Reports
 
-🔗 View Dashboard: https://app.powerbi.com/links/VjoFBUAwvY?ctid=5e9df40b-ba9c-46b1-a9bd-07f345412c4f&pbi_source=linkShare&bookmarkGuid=31bab87c-9576-44ee-bc75-c1b58a412534
+🔗 View Dashboard: https://app.powerbi.com/links/VjoFBUAwvY?ctid=5e9df40b-ba9c-46b1-a9bd-07f345412c4f&pbi_source=linkShare
 
 The Power BI reports are built on the analytics layer and provide interactive insights into:
 

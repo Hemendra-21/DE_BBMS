@@ -9,7 +9,9 @@
 with max_ingested as (
 
     {% if is_incremental() %}
-        select coalesce(max(ingested_at), '1900-01-01'::timestamp) as max_ingested_at
+        select
+            coalesce(max(ingested_at), '1900-01-01'::timestamp)
+                as max_ingested_at
         from {{ this }}
     {% else %}
         select '1900-01-01'::timestamp as max_ingested_at
@@ -19,15 +21,15 @@ with max_ingested as (
 
 donation_source as (
 
-    select * 
+    select *
     from {{ ref('stg_donations') }}
-    where ingested_at > (select max_ingested_at from max_ingested)
+    where ingested_at > (select mi.max_ingested_at from max_ingested as mi)
 
 ),
 
 final as (
 
-    select 
+    select
         ds.donation_id,
 
         ds.donor_id,
@@ -41,10 +43,10 @@ final as (
 
         ds.ingested_at
 
-    from donation_source ds
+    from donation_source as ds
 
-    inner join {{ ref("dim_date") }} ddt 
-        on ds.date = ddt.full_date
+    inner join {{ ref("dim_date") }} as ddt
+        on ds.donation_date = ddt.full_date
 
     where ds.donation_id is not null
 

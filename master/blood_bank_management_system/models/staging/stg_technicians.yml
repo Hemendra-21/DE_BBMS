@@ -14,15 +14,14 @@ models:
 
       - name: hospital_id 
         description: "Identifier for the hospital where the technician is assigned"
-        # tests:
-        #   - not_null
+        tests:
+          - not_null
 
       - name: assigned_hospital_id 
         description: "Identifier for the hospital to which the technician is currently assigned"
-        # tests:
-        #   - not_null
+       
 
-      - name: name
+      - name: technician_name
         description: "Full name of the technician"
         tests:
           - not_null

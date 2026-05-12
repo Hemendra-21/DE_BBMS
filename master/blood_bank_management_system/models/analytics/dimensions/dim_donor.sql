@@ -15,17 +15,17 @@ latest as (
 ),
 
 final as (
-    select 
+    select
         donor_id,
 
-        trim(name) as donor_name,
         age as donor_age,
+        is_eligible,
+        last_donation_date,
+        trim(name) as donor_name,
         upper(trim(gender)) as donor_gender,
         upper(trim(blood_group)) as donor_blood_group,
-        is_eligible,
         trim(city) as donor_city,
-        trim(state) as donor_state,
-        last_donation_date
+        trim(state) as donor_state
 
     from latest
 )

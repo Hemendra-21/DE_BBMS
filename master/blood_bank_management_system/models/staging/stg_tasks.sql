@@ -8,10 +8,10 @@
 
 with source as (
 
-    select * 
+    select *
     from {{ source('raw', 'tasks') }}
 
-), 
+),
 
 cleaned as (
 

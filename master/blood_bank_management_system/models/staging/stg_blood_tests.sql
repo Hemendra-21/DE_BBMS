@@ -8,7 +8,7 @@
 
 with source as (
 
-    select * 
+    select *
     from {{ source('raw', 'blood_tests') }}
 
 ),
@@ -24,11 +24,11 @@ cleaned as (
         date::date as test_date,
 
         trim(test_type) as test_type,
-        case 
+        case
             when trim(result) = 'safe' then 'Negative'
             else 'Positive'
         end as result,
-        nullif(trim(comments), '') as comments,
+        nullif(trim(comments), '') as comment_text,
 
         current_timestamp as ingested_at
 

@@ -14,11 +14,11 @@ latest as (
     where dbt_valid_to is null
 )
 
-select 
+select
     recipient_id,
 
-    trim(name) as recipient_name,
     age as recipient_age,
+    trim(name) as recipient_name,
     upper(trim(blood_group)) as recipient_blood_group,
     trim(city) as recipient_city,
     trim(state) as recipient_state

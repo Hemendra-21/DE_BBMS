@@ -15,12 +15,12 @@ models:
         tests:
           - not_null
 
-      - name: day
+      - name: calendar_day
         description: "Day component of the date."
         tests:
           - not_null
 
-      - name: month
+      - name: calendar_month
         description: "Month component of the date, retained for existing downstream references."
         tests:
           - not_null
@@ -35,12 +35,12 @@ models:
         tests:
           - not_null
       
-      - name: year
+      - name: calendar_year
         description: "Year component of the date."
         tests:
           - not_null
 
-      - name: year_month
+      - name: year_month_label
         description: "Year and month formatted as YYYY-MM."
         tests:
           - not_null

@@ -8,7 +8,7 @@
 
 with source as (
 
-    select * 
+    select *
     from {{ source('raw', 'hospitals') }}
 
 ),
@@ -18,7 +18,7 @@ cleaned as (
     select
         hospital_id::int as hospital_id,
 
-        initcap(trim(name)) as name,
+        initcap(trim(name)) as hospital_name,
         initcap(trim(street_address)) as street_address,
         initcap(trim(city)) as city,
         initcap(trim(province)) as province,
@@ -31,8 +31,8 @@ cleaned as (
 
         lower(trim(hospital_type)) as hospital_type,
 
-        case 
-            when operating_hours ilike '%24%' then '24/7' 
+        case
+            when operating_hours ilike '%24%' then '24/7'
             else trim(operating_hours)
         end as operating_hours,
 

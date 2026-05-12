@@ -8,7 +8,7 @@
 
 with source as (
 
-    select * 
+    select *
     from {{ source('raw', 'technician_tasks') }}
 
 ),
@@ -22,8 +22,9 @@ cleaned as (
         current_timestamp as ingested_at
 
     from source
-    where technician_id is not null
-      and task_id is not null
+    where
+        technician_id is not null
+        and task_id is not null
 )
 
 select * from cleaned

@@ -8,32 +8,27 @@
 
 with source as (
 
-    select * 
+    select *
     from {{ source('raw', 'donors') }}
 
 ),
 
 cleaned as (
 
-    select 
+    select
         donor_id::int as donor_id,
         registered_by_staff_id::int as registered_by_staff_id,
         primary_contact_id::int as primary_contact_id,
-        name::varchar as name,
+        name::varchar as donor_name,
         age::int as age,
         gender::varchar as gender,
-        weight::numeric(5,2) as weight,
+        weight::numeric(5, 2) as weight,
 
-        upper(trim(blood_group)) as blood_group,
         last_donation_date::date as last_donation_date,
+        donations_count::int as donations_count,
 
-        case 
-            when is_eligible = '1' then true 
-            else false 
-        end as is_eligible,
-
-        donations_count::int as donations_count, 
         contact_method_type::varchar as contact_method_type,
+
         contact_detail::varchar as contact_detail,
         donor_type::varchar as donor_type,
         notes::varchar as notes,
@@ -42,6 +37,8 @@ cleaned as (
         trim(split_part(location, ',', 1))::varchar as city,
         trim(split_part(location, ',', 2))::varchar as state,
         days_since_last_donation::int as days_since_last_donation,
+        upper(trim(blood_group)) as blood_group,
+        coalesce(is_eligible = '1', false) as is_eligible,
 
         (blood_group_a_plus = '1') as blood_group_a_plus,
         (blood_group_a_minus = '1') as blood_group_a_minus,
@@ -49,7 +46,7 @@ cleaned as (
         (blood_group_b_minus = '1') as blood_group_b_minus,
         (blood_group_ab_plus = '1') as blood_group_ab_plus,
         (blood_group_ab_minus = '1') as blood_group_ab_minus,
-        (blood_group_o_plus = '1') as blood_group_o_plus,    
+        (blood_group_o_plus = '1') as blood_group_o_plus,
         (blood_group_o_minus = '1') as blood_group_o_minus,
 
         current_timestamp as ingested_at
